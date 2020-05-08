@@ -27,14 +27,30 @@ int getdir (string dir, vector<string> &files){
    return(0);
 }
 
-int main() {
-   string dir = string("sm_doc_set");
-   vector,string. files = vector<string>();
+int main(int argc, char *argv[]) {
+   string dir = string("argv[2]");
+   vector<string> files = vector<string>();
 
    getdir(dir,files);
 
    for (unsigned int i = 0; i < files.size(); i++){
       cout << i << files[i] << endl;
+      ifstream infile;
+      infile.open(files[i]);
+      if(infile.is_open()){
+         for(int c = 0; c + (argc[3] -1)  != eof(); c++){
+            string output;
+            int temp = c;
+            while (output.length < argc[3]){
+               output << infile[temp];
+               temp++;
+            }
+            cout << output << endl;
+         }
+      }
+      else{
+         cout << "could not open file" << endl;
+      }
    }
    return 0;
 }
